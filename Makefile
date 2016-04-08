@@ -1,3 +1,4 @@
+DBUSER_NAME?=dbuser
 DBUSER_PASSWORD?=qwerty
 POSTGRES_PASSWORD?=mysecretpassword
 
@@ -23,6 +24,7 @@ run-check:
 		--name postgres-template-check \
 		-e POSTGRES_PASSWORD=$(POSTGRES_PASSWORD) \
 		-e DBUSER_PASSWORD=$(DBUSER_PASSWORD_CHECK) \
+		-e DBUSER_NAME=$(DBUSER_NAME) \
 		-v $(VOLUMES_ROOT)/test:/var/lib/postgresql/data\
 		$(DOCKER_TAG)
 
