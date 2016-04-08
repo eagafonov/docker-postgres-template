@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-gosu postgres postgres --single -E <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
         CREATE ROLE "$DBUSER_NAME" WITH LOGIN CREATEDB PASSWORD '$DBUSER_PASSWORD';
         CREATE DATABASE "$DATABASE_NAME" WITH OWNER="$DBUSER_NAME";
 EOSQL
